@@ -7,6 +7,7 @@ const items = (props) => {
             
             <span>{props.id + 1}</span>
             <span>{props.data}</span>
+            <button onClick={() => props.onEdit()}>Edit</button>
             <button onClick={() => {props.onSelect(props.id)}}>Delete</button>
                         
         </div>

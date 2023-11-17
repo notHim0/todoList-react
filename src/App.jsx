@@ -24,6 +24,25 @@ function App() {
     })
   }
 
+// Functionality to edit items in the Todo List 👇
+  const [editIndex, setEditIndex] = useState(null);
+    
+  const editItem = (index) => {
+    setItem(itemList[index]);
+    setEditIndex(index);
+  };
+
+  const updateItem = (index) => {
+    const updatedItem = prompt('Update the item/task:', itemList[index]);
+    if (updatedItem !== null) {
+      setItemList((prevItemList) => {
+        const updatedList = [...prevItemList];
+        updatedList[index] = updatedItem;
+        return updatedList;
+      });
+    }
+  }
+  
   return (
     <>
       <div className="container">
@@ -40,7 +59,7 @@ function App() {
             {itemList.map((item, index) => {
               return (
                 <div key={index}>
-                  <Items data={item} id={index} onSelect={deleteItem} />
+                  <Items data={item} id={index} onSelect={deleteItem} onEdit={() => updateItem(index)} />
                 </div>
               )
             })}
